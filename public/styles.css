@@ -1,0 +1,106 @@
+/* main header intro */
+body {
+	font-size: 16px;
+	font-family: "Helvetica", "Arial", sans-serif;
+	text-align: end;
+
+  background-color: rgb(136, 136, 136);
+}
+#intro {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.05cm solid black;
+  padding-top: 1cm;
+}
+#course {
+  padding-right: 40px;
+}
+#list {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+}
+#name {
+  padding-right: 220px;
+}
+#me {
+  border-radius: 200px;
+}
+#myintro {
+  padding-left: 2cm;
+  padding-top: 1cm;
+}
+/* menunav */
+
+.navigation-bar {
+  background-color: black;
+  padding: 0%;
+  position: fixed;
+  left: 0; right: 0; 
+  top: 0;
+  z-index: 99;
+  height: 50px;
+  opacity: 90%;
+
+}
+.menu {
+  text-align: center
+}
+.menu ul {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+.menu ul li {
+  margin-left: 20px;
+  padding-left:10px ;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+
+}
+.menu ul li a:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+#small_intro {
+	padding-right: 1cm;
+	text-align: center;
+}
+#intropara {
+	padding-left: 21cm;
+	padding-right: 4cm;
+  border-bottom: 0.1cm solid black;
+}
+h1#epis {
+  padding-top: 42px;
+  padding-bottom: 0px;
+}
+button#sizer {
+  font-size: xxx-large;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+button#sizer1 {
+  font-size: xxx-large;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+#videoPlayer {
+  border-radius: 27px;
+  width: 623px;
+  height: 350px;
+}
+#bottom {
+  display: flex;
+  
+}

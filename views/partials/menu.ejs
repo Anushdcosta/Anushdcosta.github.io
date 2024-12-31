@@ -1,0 +1,13 @@
+<!-- overlay navigation bar that stays to the top of the screen  with all the different menu options-->
+<header>
+    <nav class="navigation-bar">
+        <div class="menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <% for (let i = 1; i <= folders; i++) { %>
+                    <li><a href="/<%= name %>?season=<%= i %>">Season <%= i %></a></li>
+                <% } %>
+            </ul>            
+        </div>
+    </nav>
+</header>

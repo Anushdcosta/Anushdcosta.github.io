@@ -1,0 +1,84 @@
+<%- include("./partials/head.ejs") %>
+<%- include("./partials/menu.ejs") %>
+<body>
+    <div style="text-align: center;margin-top: 3cm;">
+        <video id="videoPlayer" controls="controls autoplay">
+            <source id="videoSource" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div id="bottom" style="display: flex;justify-content: space-evenly;align-items: center;width: 100%;position: relative;">
+            <button id="sizer" onclick="previousVideo()">&lt;</button>
+            <h1 id="counter" style="margin: 0 20px;">1 of 24</h1>
+            <button class="next" id="sizer1" onclick="nextVideo()">></button>
+        </div>
+        
+    </div>
+
+    <script>
+        let season = "<%= season %>";  // Make sure 'season' is available here
+        
+        let currentIndex = 1;
+        const totalVideos = parseInt("<%= numofepisodes %>", 10);  // Total number of videos
+        if (season.length === 1) {
+            season = '0' + season;
+        }
+        console.log(totalVideos);
+        if (currentIndex <= 1) {
+            but = document.getElementById("sizer");
+            but.style.color = "gray";
+            but.style.cursor = "default"
+        }
+        function updateVideoSource() {
+            document.getElementById("counter").innerText = currentIndex + " of " + totalVideos;
+            const videoSource = document.getElementById('videoSource');
+            let episodeNumber = currentIndex < 10 ? '0' + currentIndex : currentIndex;
+            link = ''
+            if (parseInt(season, 10) < 4) {
+                // Adjust link format for season 1, 2, and 3
+                link = `https://dl3.raycamovie.com/Serial/1401/07/The.Flash/S${season}/The.Flash.S${season}E${episodeNumber}.720p.x264.Dubble.Farsi.RaycaMovie.com.mkv`;
+            } else if ((parseInt(season, 10) === 4) || (parseInt(season, 10) === 6)) {
+                link = `https://dl3.raycamovie.com/Serial/1401/07/The.Flash/S${season}/The.Flash.2014.S${season}E${episodeNumber}.720p.BluRay.x264.Dubble.Farsi.RaycaMovie.com.mkv`;
+            } else if (parseInt(season, 10) === 5) {
+                link = `https://dl3.raycamovie.com/Serial/1401/07/The.Flash/S${season}/The.Flash.S${season}E${episodeNumber}.720p.BluRay.x264.Dubble.Farsi.RaycaMovie.com.mkv`;
+            } else if (parseInt(season, 10) === 7) {
+                const flashEpisodes = ["The.FLash.S07E01.Alls.Well.That.Ends.Wells.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E02.The.Speed.Of.Thought.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E03.Mother.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E04.Central.City.Strong.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E05.Fear.Me.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E06.The.One.With.The.Nineties.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E07.Growing.Pains.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E08.The.People.V.Killer.Frost.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E09.Timeless.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E10.Family.Matters.Part.1.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E11.Family.Matters.Part.2.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E12.Good.Bye.Vibrations.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E13.Masquerade.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E14.Rayo.De.Luz.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E15.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E16.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E17.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv", "The.Flash.S07E18.720p.WEB-DL.x264.Dubble.Farsi.RaycaMovie.com.mkv" ];
+                console.log(currentIndex, typeof currentIndex);
+                link = `https://dl3.raycamovie.com/Serial/1401/07/The.Flash/S07/${flashEpisodes[currentIndex-1]}`;
+            }
+            // Correct link format
+            videoSource.src = link;
+            document.getElementById('videoPlayer').load();
+        }
+        function nextVideo() {
+            if (currentIndex < totalVideos) {
+                currentIndex++;
+                updateVideoSource();
+                but = document.getElementById("sizer");
+                but.style.color = "black";
+                but.style.cursor = "pointer"
+            } if (currentIndex >= totalVideos) {
+                but = document.getElementById("sizer1");
+                but.style.color = "gray";
+                but.style.cursor = "default"
+            }
+        }
+
+        function previousVideo() {
+            if (currentIndex > 1) {
+                currentIndex--;
+                updateVideoSource();
+                but = document.getElementById("sizer1");
+                but.style.color = "black";
+                but.style.cursor = "pointer"
+            } if (currentIndex <= 1) {
+                but = document.getElementById("sizer");
+                but.style.color = "gray";
+                but.style.cursor = "default"
+            }
+        }
+
+        // Initial load
+        updateVideoSource();
+    </script>
+</body>
+</html>
