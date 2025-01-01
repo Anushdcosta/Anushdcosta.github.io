@@ -73,8 +73,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/flash", (req, res) => {
-  const season = req.query.season || 0;
-
+  const season = req.query.season || 1;
+  
   const url = `https://dl3.raycamovie.com/Serial/1401/07/The.Flash/S0${season}/`;
   const link = `https://dl3.raycamovie.com/Serial/1401/07/The.Flash/`;
   countEpisodes(url).then((thisthing) => {
